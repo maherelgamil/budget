@@ -11,6 +11,10 @@ class Widget extends Model
 {
     use SoftDeletes;
 
+    protected $casts = [
+        'settings' => 'object'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -25,7 +29,7 @@ class Widget extends Model
             throw new WidgetUnknownTypeException();
         }
 
-        $widgetInstance = new $widgetClass();
+        $widgetInstance = new $widgetClass($this->settings);
 
         return $widgetInstance->render();
     }
