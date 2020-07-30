@@ -16,8 +16,10 @@ use App\Policies\RecurringPolicy;
 use App\Models\Recurring;
 use App\Models\Space;
 use App\Models\SpaceInvite;
+use App\Models\Widget;
 use App\Policies\SpaceInvitePolicy;
 use App\Policies\SpacePolicy;
+use App\Policies\WidgetPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -34,7 +36,8 @@ class AuthServiceProvider extends ServiceProvider
         Spending::class => SpendingPolicy::class,
         Recurring::class => RecurringPolicy::class,
         Tag::class => TagPolicy::class,
-        Import::class => ImportPolicy::class
+        Import::class => ImportPolicy::class,
+        Widget::class => WidgetPolicy::class
     ];
 
     /**

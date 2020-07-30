@@ -23,6 +23,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TranslationsController;
 use App\Http\Controllers\VerifyController;
+use App\Http\Controllers\WidgetController;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
@@ -41,6 +42,14 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    Route::name('widgets.')->group(function () {
+        Route::get('/widgets/create', [WidgetController::class, 'create'])->name('create');
+        Route::post('/widgets', [WidgetController::class, 'store'])->name('store');
+        Route::post('/widgets/{widget}/up', [WidgetController::class, 'up'])->name('up');
+        Route::post('/widgets/{widget}/down', [WidgetController::class, 'down'])->name('down');
+        Route::post('/widgets/{widget}/delete', [WidgetController::class, 'destroy'])->name('destroy');
+    });
 
     Route::post('/resend-verification-mail', ResendVerificationMailController::class)->name('resend_verification_mail');
 
@@ -124,6 +133,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/settings/billing', [SettingsController::class, 'getBilling'])->name('billing')->middleware('stripe');
         Route::post('/settings/billing/upgrade', [SettingsController::class, 'postUpgrade'])->name('billing.upgrade')->middleware('stripe');
         Route::post('/settings/billing/cancel', [SettingsController::class, 'postCancel'])->name('billing.cancel')->middleware('stripe');
+        Route::get('/settings/dashboard', [SettingsController::class, 'getDashboard'])->name('dashboard');
         Route::get('/settings/spaces', [SettingsController::class, 'getSpaces'])->name('spaces.index');
     });
 

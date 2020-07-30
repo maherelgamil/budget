@@ -13,6 +13,7 @@
                         @if ($arePlansEnabled)
                             <li><a href="/settings/billing"><i class="fas fa-wallet fa-sm"></i> {{ __('general.billing') }}</a></li>
                         @endif
+                        <li><a href="{{ route('settings.dashboard') }}"><i class="fas fa-columns fa-sm"></i> {{ __('general.dashboard') }}</a></li>
                         <li><a href="/settings/spaces"><i class="fas fa-rocket fa-sm"></i> {{ __('models.spaces') }}</a></li>
                     </ul>
                 </div>

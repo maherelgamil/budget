@@ -35,7 +35,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'month' => date('n'),
 
-            'widgets' => $request->user()->widgets()->orderBy('sorting_index')->get(),
+            'widgets' => $request->user()->widgets()->ordered()->get(),
 
             'totalSpent' => $this->dashboardRepository->getTotalAmountSpent($currentYear, $currentMonth),
             'mostExpensiveTags' => $mostExpensiveTags,

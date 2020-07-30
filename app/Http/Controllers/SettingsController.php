@@ -182,4 +182,11 @@ class SettingsController extends Controller
 
         return redirect()->route('settings.billing');
     }
+
+    public function getDashboard(Request $request)
+    {
+        $widgets = $request->user()->widgets()->ordered()->get();
+
+        return view('settings.dashboard', ['widgets' => $widgets]);
+    }
 }

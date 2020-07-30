@@ -22,12 +22,27 @@ class Widget extends Model
         'settings'
     ];
 
+    // Relations
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    // Scopes
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('sorting_index');
+    }
+
     // Custom
+    public static function getTypes(): array
+    {
+        return [
+            'balance',
+            'spent'
+        ];
+    }
+
     public function render(): string
     {
         $widgetClass = '\App\Widgets\\' . ucfirst($this->type);
