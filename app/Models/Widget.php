@@ -15,6 +15,13 @@ class Widget extends Model
         'settings' => 'object'
     ];
 
+    protected $fillable = [
+        'user_id',
+        'type',
+        'sorting_index',
+        'settings'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
